@@ -110,8 +110,3 @@ List of modules:
 --- R modules generating figures:
  
  * Input.R: input data initial parameters in R module
-
- 
-
-
-

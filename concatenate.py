@@ -7,10 +7,10 @@ def concatenate():
 
      directory =  folder + '/' + 'Posterior/'
 
-     samps = np.load('temp/samps1.npy')  
-     fPop = np.load('temp/fPop1.npy')
-     fGDP = np.load('temp/fGDP1.npy')
-     fCO2 = np.load('temp/fCO21.npy')     
+     samps = np.load('temp/samp1.npy')  
+     fPop = np.load('temp/fPops1.npy')
+     fGDP = np.load('temp/fGDPs1.npy')
+     fCO2 = np.load('temp/fCO2s1.npy')     
 
      for i in range(1,10):
        sampsi = np.load('temp/samps' + str(i+1) + '.npy')

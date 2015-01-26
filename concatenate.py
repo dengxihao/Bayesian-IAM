@@ -5,7 +5,7 @@ def concatenate():
 
      folder = sys.argv[1]
 
-     directory =  folder + '/' + 'Posterior/'
+     directory =  'Result' + folder + '/' + 'Posterior/'
 
      samps = np.load('temp/samp1.npy')  
      fPop = np.load('temp/fPops1.npy')

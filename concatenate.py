@@ -13,10 +13,10 @@ def concatenate():
      fCO2 = np.load('temp/fCO2s1.npy')     
 
      for i in range(1,10):
-       sampsi = np.load('temp/samps' + str(i+1) + '.npy')
-       fPopi = np.load('temp/fPop'+str(i+1)+'.npy')
-       fGDPi = np.load('temp/fGDP'+str(i+1)+'.npy')
-       fCO2i = np.load('temp/fCO2'+str(i+1)+'.npy')
+       sampsi = np.load('temp/samp' + str(i+1) + '.npy')
+       fPopi = np.load('temp/fPops'+str(i+1)+'.npy')
+       fGDPi = np.load('temp/fGDPs'+str(i+1)+'.npy')
+       fCO2i = np.load('temp/fCO2s'+str(i+1)+'.npy')
        
        samps = np.concatenate((samps, sampsi))
        fPop = np.concatenate((fPop, fPopi))

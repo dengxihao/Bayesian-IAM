@@ -3,7 +3,7 @@ import macro
 
 def logpc(kappat, kappatau):
 ##
-## logistic penetration curve
+## a generic function to compute the logistic penetration curve
 ##
    
      logit = 1/(1 + np.exp(-kappat + kappatau))
@@ -14,15 +14,28 @@ def logpc(kappat, kappatau):
 
 def co2(P0, Q0, A0, K0, t, gdpconst, coconst):
 ##
-##  CO2 emmission
+## computing CO2 emmission time series by Eq. (9)-(14) in keller07
+##
+## Inputs: P0 --- initial population
+##         Q0 --- initial GWP
+##         A0 --- initial total factor productivity
+##         K0 --- initial capital stock
+##          t --- observation time vector
+##         gdpconst = [phi1, phi2, phi3, alpha, As, delta, s, lam, pi]
+##         coconst = [kappa, rho2, rho3, tau2, tau3, tau4]
+##
+## Output: Output --- population, GWP and carbon time series
+##         Output[:,0] --- population time series
+##         Output[:,1] --- GWP time series
+##         Output[:,2] --- carbon emission time series
 ##
     
-     kappa = coconst[0]
-     rho2 = coconst[1]
-     rho3 = coconst[2]
-     tau2 = coconst[3]
-     tau3 = coconst[4]
-     tau4 = coconst[5]
+     kappa = coconst[0]            # technological penetration rate
+     rho2 = coconst[1]             # carbon intensity of technology 2
+     rho3 = coconst[2]             # carbon intensity of technology 3
+     tau2 = coconst[3]             # half saturation time of technology 2
+     tau3 = coconst[4]             # half saturation time of technology 3
+     tau4 = coconst[5]             # half saturation time of technology 4
 
      kappat = kappa * t
      kappa2 = kappa * tau2
@@ -53,15 +66,28 @@ def co2(P0, Q0, A0, K0, t, gdpconst, coconst):
 
 def co2t(Q0, t, gdpconst, coconst):
 ##
-##  CO2 emmission
+## computing CO2 emmission at the year t by Eq. (9)-(14) in keller07
+##
+## Inputs: P0 --- initial population
+##         Q0 --- initial GWP
+##         A0 --- initial total factor productivity
+##         K0 --- initial capital stock
+##          t --- a specific year
+##         gdpconst = [phi1, phi2, phi3, alpha, As, delta, s, lam, pi]
+##         coconst = [kappa, rho2, rho3, tau2, tau3, tau4]
+##
+## Output: Output --- population, GWP and carbon time series
+##         Output[:,0] --- population time series
+##         Output[:,1] --- GWP time series
+##         Output[:,2] --- carbon emission time series
 ##
     
-     kappa = coconst[0]
-     rho2 = coconst[1]
-     rho3 = coconst[2]
-     tau2 = coconst[3]
-     tau3 = coconst[4]
-     tau4 = coconst[5]
+     kappa = coconst[0]            # technological penetration rate
+     rho2 = coconst[1]             # carbon intensity of technology 2
+     rho3 = coconst[2]             # carbon intensity of technology 3
+     tau2 = coconst[3]             # half saturation time of technology 2
+     tau3 = coconst[4]             # half saturation time of technology 3
+     tau4 = coconst[5]             # half saturation time of technology 4
 
      kappat = kappa * t
      kappa2 = kappa * tau2
@@ -77,12 +103,9 @@ def co2t(Q0, t, gdpconst, coconst):
      gamma3 = logpc3 - logpc4
 
      phit = gamma2 * rho2 + gamma3 * rho3
-
-#     Nt = len(t)
   
      CO2 = phit * Q0
 
- #    Output = np.c_[Macro, CO2]
-
      return CO2
+
 

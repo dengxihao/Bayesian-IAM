@@ -1,9 +1,14 @@
+## plot marginal posterior probability density from mcmc samples
+
 source('Input.R')
 
 args <- commandArgs(TRUE)
 
+# folders to save the figures
 folder <- args[1]
 subfolder <- args[2]
+
+# index of the parameters
 column <- strtoi(args[3]) 
 
 mycols <- rep("NULL", 25)
@@ -38,6 +43,7 @@ label  <-  c("population growth rate\n(1/yr)",                        # 1
              "error of non-annual population\n(billion)",             # 24
              "error of non-annual GWP\n(trillion $/yr)")              # 25
 
+# index of parameters with Gaussian priors
 indn <- c(3, 7, 8, 9, 16)
 
 pdf(paste("Figures/par", args[3], ".pdf", sep=""))
@@ -52,6 +58,7 @@ y <- ys$y * dunif(x, min=xb[1], max=xb[2]) * (xb[2]-xb[1])
 
 xl <- xb
 
+# plot posterior probability density
 plot(x,y,type='l', col='blue', main="", 
          xlim=xl, ylim=c(0, 1.05*max(y)),
          cex.axis=2.5, xlab="", ylab="",
@@ -72,12 +79,13 @@ xp <- seq(xb[1], xb[2], length=100)
 yp <- dunif(xp, min=xb[1], max=xb[2])
 }
 
-#xp <- c(xb[1], xp, xb[2])
-#yp <- c(0, yp, 0)
+xp <- c(xb[1], xp, xb[2])
+yp <- c(0, yp, 0)
 
-xp <- c(xp, xb[2])
-yp <- c(yp, 0)
+#xp <- c(xp, xb[2])
+#yp <- c(yp, 0)
 
+# plot prior probability density
 lines(xp, yp, lty=2, lwd=5, col='red')
 
 if (x[which.max(y)]>=mean(xb)){

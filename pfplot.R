@@ -1,3 +1,5 @@
+## plot marginal posterior probability density of forecasts at 2050, 2100 and 2150
+
 source('Input.R')
 
 args <- commandArgs(TRUE)
@@ -38,16 +40,16 @@ ypdf3 <- density(pdf1[,3][pdf1[,3] < xmax])$y
 
 ######
 
-#xlo <- min(min(xpdf1), min(xpr1), min(xpdf2)) 
-#xup <- max(max(xpdf1), max(xpr1), max(xpdf2), max(xpr2)) 
-
 ylo <- 0
 yup <- 1.05*max(max(ypdf1), max(ypdf2), max(ypdf3))
 
+# plot density of forecast at 2050
 plot(xpdf1,ypdf1, type='l', col='blue', main="", xlab=label, ylab="", 
          ylim=c(ylo, yup), xlim=c(6, xmax), xaxt='n',
          cex.axis=2.5, cex.lab=2.5, font.lab=2, 
          lwd=5, lty=1)
+
+# define axes
 if (filename == 'Pop'){
 xlabels <- c(6, 8, 10, 12, 14)
 axis(side=1, at=seq(6, 14, by=2), labels=xlabels, cex.axis=2.5)
@@ -59,8 +61,10 @@ xlabels <- c(0, 30, 60, 90)
 axis(side=1, at=seq(0, 90, by=30), labels=xlabels, cex.axis=2.5)
 }
 
+# plot density of forecast at 2100
 lines(xpdf2, ypdf2, col='red', lwd=5, lty=1)
 
+# plot density of forecast at 2150
 lines(xpdf3, ypdf3, col='green', lwd=5, lty=1)
 
 legend('topright', lty=c(1, 1, 1), lwd=c(2.6, 2.6, 2.6), 

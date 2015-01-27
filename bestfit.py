@@ -3,7 +3,9 @@ from forecast import project
 from Input import t1, t0, ind
 
 def bestfit():
-
+##
+## main function to compute the best fit models
+##
    x =  np.loadtxt('parm2.txt')
  
    fPop, fGDP, fCO2, mPop, mGDP, mCO2 = project(t1, t0, ind, x)

@@ -6,6 +6,9 @@ from scipy.stats import truncnorm
 from Input import parb
 
 def priorpro():
+##
+## main function to generate samples from prior distribution  
+##
  
     foldername = sys.argv[1]
 

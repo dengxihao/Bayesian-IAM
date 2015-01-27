@@ -3,6 +3,9 @@ import numpy as np
 from percentile import percentile
 
 def interval():
+##
+## main function to generate percentiles of forecasts
+##
 
      filename = sys.argv[1]
 

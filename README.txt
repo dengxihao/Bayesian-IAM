@@ -27,7 +27,7 @@ Steps to run the Python commands in terminal:
 
 3. compute percentiles of posterior hindcasts & forecasts:
 
-    python interval.py 
+    python interval.py Pop(or GDP or CO2)
 
 4. generate samples of projections for Pop, GWP and CO2 at the year 2050, 2100 and 2150:
 

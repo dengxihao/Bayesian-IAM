@@ -1,22 +1,30 @@
-    macro0 <- as.matrix(read.table("macro.txt"))
-    co20 <- as.matrix(read.table("co2.txt"))    
+# This R module load all the inputs of data, initial parameters, parameter bounds, etc.
+ 
+   macro0 <- as.matrix(read.table("macro.txt"))    # observations of population and GWP
+    co20 <- as.matrix(read.table("co2.txt"))       # observations of carbon emission  
     
-    Nm0 <- length(macro0[,1])
-    NC0 <- length(co20[,1])
-    tm <- macro0[2:Nm0,1]
-    t <- co20[,1]
-    t0 <- macro0[1,1]
+    Nm0 <- length(macro0[,1])              # length of population observations  
+    NC0 <- length(co20[,1])                # length of carbon emission observations
+    tm <- macro0[2:Nm0,1]                  # observation times of population after 1700
+    t <- co20[,1]                          # observation times of carbon emission
+    t0 <- macro0[1,1]                      # initial observation time of population
     
-    tM <- c(tm, ((tm[Nm0-1]+1):2150))
+   # hindcast and forecast time range of population and GWP 
+    tM <- c(tm, ((tm[Nm0-1]+1):2150))  
+   
+   # hindcast and forecast time range of carbon emission   
     t1 <- t[1]:2150 
 
-    dPop = macro0[, 2]
-    dGDP = macro0[, 3]
-    dCO2 = co20[,2]
+    dPop = macro0[, 2]                      # observations of population 
+    dGDP = macro0[, 3]                      # observations of GWP
+    dCO2 = co20[,2]                         # observations of carbon emission
+
+   # the indices of population observation times in carbon emission observation time vector
     ind = match(tm, t)
    
     par0 <- as.matrix(read.table("parm1.txt"));
 
+   # parameter bounds  
     parlb <- c(0.0001,
               1.0, 
               6.9,
@@ -70,54 +78,6 @@
                2.0) 
 
    parb <- matrix(c(parlb, parub), nrow=length(parlb), ncol=2)
-
-   kappa = 0.000007*c(5,
-                 500, 
-                 70,
-                 1,
-                 800,
-                 10,
-                 10,
-                 40,
-                 1,
-                 2,
-                 3,
-                 2,
-                 2000,
-                 1000,
-                 500,
-                 10,
-                 1,    # Model
-                 100,
-                 100,
-                 100,
-                 2,
-                 10,
-                 2)
-
-  kappa0 = 0.00004*c(10,
-                 300, 
-                 100,
-                 0.2,
-                 70,
-                 1,
-                 1,
-                 10,
-                 10,
-                 3,
-                 3,
-                 5,
-                 1000,
-                 3000,
-                 10000,
-                 30,
-                 0.1,    # Model
-                 1500,
-                 200,
-                 20,
-                 0.7,
-                 10,
-                 10)
 
 
 

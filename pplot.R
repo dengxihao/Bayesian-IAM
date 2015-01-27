@@ -1,3 +1,5 @@
+## plot comparison of posteriors of forecasts at 2050 based on two different priors
+
 source('Input.R')
 
 args <- commandArgs(TRUE)

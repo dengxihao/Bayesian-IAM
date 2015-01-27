@@ -4,6 +4,9 @@ from forecast import project
 from Input import t1, t0, ind
 
 def priorf():
+##
+## main function to generate prior forecasts 
+##
 
     foldername = 'Result' + sys.argv[1] + '/Prior/'
 

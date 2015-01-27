@@ -24,6 +24,9 @@ def lnPrior(parb, par):
 ##
 ## log prior distribution
 ##
+## Inputs: parb --- parb[:,0] lower bound and parb[:,1] upper bound
+##          par --- model and residual parameters
+##
 
 #   phi1 = par[0]
 #   phi2 = par[1]
@@ -44,34 +47,32 @@ def lnPrior(parb, par):
 #   P0 = par[15]
 #   A0 = par[16]
 
-    indN = np.array([2, 6, 7, 8, 15])
-#    indN = np.array([6, 8, 15])
-#    indN = np.array([6, 7, 8, 15])  
+  # indices of the parameters with Gaussian priors
+    indN = np.array([2, 6, 7, 8, 15])   
 
+  # half saturation time constraints: technology 2 < 3 < 4
     lnptau = 0 
     if par[12] >= par[13] or par[13] >= par[14]:
         lnptau = -float("inf")
-
+              
+  # carbon intensity constraints: technology 2 > 3
     lnprho2 = 0
     if par[10] < par[11]: 
         lnprho2 = -float("inf")
 
+  # mean and variance of Gaussian priors
     meanN = (parb[indN, 0] + parb[indN, 1])/2
-
     varN = ((parb[indN, 1] - parb[indN, 0])/4)**2
 
+  # log Gaussian prior
     lnpN = -0.5 * np.sum((par[indN] - meanN)**2/varN)
 
     lnpe = lnptau + lnprho2
-
-    # log normal prior for rho2
-#    mlogrho2 = np.log(3/(parb[10, 1] - parb[10, 0])) 
-#    sdlogrho2 = 0.5
-#    lnrho2 = -np.log(par[10]) - (np.log(par[10]) - mlogrho2)**2/0.5
-
-   
-    lnp = logunipdf(par, parb) + lnpe + lnpN - np.log(par[23]) \
-          - np.log(par[24]) #+ lnrho2
+         
+  # log prior, last two terms are log Jeffreys priors of standard deviations 
+  # of population and GWP sparse data
+    lnp = logunipdf(par, parb) + lnpe + lnpN \
+          - np.log(par[23]) - np.log(par[24])  
 
     return lnp
 
@@ -80,6 +81,22 @@ def lnPrior(parb, par):
 def lnpdf(t, t0, ind, dPop, dGDP, dCO2, parb, par):
 ##
 ## log posterior distribution
+##
+## Inputs: t --- the observation time vector of carbon emission
+##         t0 --- initial observational time of population
+##         ind --- the indices of population observation times in carbon
+##                 emission observation time vector
+##         dPop --- observations of population
+##         dGDP --- observations of GWP
+##         dCO2 --- observations of carbon emission
+##         parb --- parameter bounds
+##         par --- parameter set described in macro.py, emit.py and 
+##                 AR parameters
+##
+## Output: lnposter --- log posterior
+##         fPop --- forecast of population
+##         fGDP --- forecast of GWP
+##         fCO2 --- forecast of carbon emission
 ##
 
    loglike, fPop, fGDP, fCO2 = lnLklhd(t, t0, ind, dPop, dGDP, dCO2, par)

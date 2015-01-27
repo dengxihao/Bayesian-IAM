@@ -1,3 +1,5 @@
+## plot residuals and test the Gaussianity of the residuals
+
 source('Input.R')
 mainfolder <- "/home/xihao/R/Deng_Keller"
 macro0 <- as.matrix(read.table("macro.txt"))
@@ -51,10 +53,12 @@ pdf(figname)
 
 par(mfrow=c(3,2), pin=c(3.5, 2.7), mar=c(5,4.6,4,1.5))
 
+# plot observations
 plot(xd, d, type='p', pch=19, main=mtitle, 
      cex.axis=1.5, cex.main=1.5, cex.lab=1.5, font.lab=2,
      xlab='Year', ylab=yrl)
 
+# plot bestfit model
 lines(xd, mle, lty=1, col='red', lwd=1.5)
 
 legend('topleft', pch=c(19, NA), lty=c(NA, 1), lwd=c(1, 1.5), 
@@ -63,24 +67,28 @@ legend('topleft', pch=c(19, NA), lty=c(NA, 1), lwd=c(1, 1.5),
 
 box(lwd=2)
 
+# plot the probability density of the error of log residual
 plot(density(incre), main=paste('AR Error of Log', sub, sep=' '), 
      cex.axis=1.5, cex.main=1.5, cex.lab=1.5, font.lab=2, lwd=1.5,
      xlab='AR Error', ylab='pdf')
 
 box(lwd=2)
 
+# plot residual
 plot(xs, resi, type='p', pch=19, main = 'Residuals', 
      cex.axis=1.5, cex.main=1.5, cex.lab=1.5, font.lab=2,
      xlab='Year', ylab=yrl)
 
 box(lwd=2)
 
+# plot cumulative probability density of the AR error 
 plot(ecdf(incre), main='', 
      cex.axis=1.5, cex.main=1.5, cex.lab=1.5, font.lab=2, lwd=1.5,
      xlab='AR Error', ylab='empirical cdf')
 
 box(lwd=2)
 
+# plot AR error
 plot(xs, c(0,incre), type='p', pch=19, 
      main = paste('AR Error of Log', sub, sep=' '), 
      cex.axis=1.5, cex.main=1.5, cex.lab=1.5, font.lab=2,
@@ -91,6 +99,7 @@ box(lwd=2)
 std <- sqrt(mean(incre^2))
 z <- incre/std
 
+## plot Q-Q plot of AR error
 qqnorm(z, main='Q-Q Plot of AR Error', type='p', pch=19, axes=FALSE,
        cex.axis=1.5, cex.main=1.5, cex.lab=1.5, font.lab=2, 
        xlim=c(-3, 3), ylim=c(-3, 3),

@@ -1,3 +1,5 @@
+## plot percentiles of hindcasts and forecasts of carbon emission
+
 library("grid", lib.loc="R_packages/");
 library("methods", lib.loc="R_packages/");
 library("spam", lib.loc="R_packages/");
@@ -10,8 +12,10 @@ source('Input.R')
 
 foldname <- 'Result1/Posterior/'
 
+# load percentiles of hindcasts and forecasts of carbon emission
 P <- as.matrix(read.table(paste(foldname, 'PCO2.dat', sep='')))
 
+# load DICE, FUND and RCP model scenarios
 dice <- as.matrix(read.table('dice_bau_2150.csv', sep=',', skip=1))
 
 fund <- as.matrix(read.table('fund.dat'), sep=' ')
@@ -38,6 +42,7 @@ plot(x, type='l', main='Carbon Emission', axes=FALSE,
      cex.axis=1.5, cex.lab=1.3, cex.main=1.5, font.lab=2, font.main=2,
      lty=1, lwd=0.5, col='white')
 
+# polygon plot
 for (i in 1:196) {
 
 polygon(c(x, rev(x)), c(P[3,], rev(P[199-i,])), 
@@ -85,8 +90,6 @@ my_breaks <- c('10%', '30%', '50%', '70%', '90% percentile')
 image.plot(legend.only=TRUE, zlim=0.01*range(1,99), col=rev(pcolor), 
            smallplot=c(0.19,0.22, 0.33,0.74), 
            axis.args = list(at = seq(0.1, 0.9, 0.2), labels=my_breaks))
-
-#box(lwd=2)
 
 #################################################################################
 xlabels1 <- c(1950, 1975, 2000, 2025, 2050)
@@ -136,8 +139,6 @@ legend(1984, 40, pch=c(19, NA, NA, NA), lty=c(NA, 2, 4, 3),
        box.lwd=1.7, cex=0.78)
 
 lines(c(t[NC0], t[NC0]), c(0, 40), lty=5, lwd=2.5, col='grey')
-#lines(c(1950, 1950), c(0, -3), lwd=2.3)
-#lines(c(2050, 2050), c(0, -3), lwd=2.3)
 
 my_breaks <- c('10%', '30%', '50%', '70%', '90% percentile')
 

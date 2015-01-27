@@ -2,7 +2,9 @@ import numpy as np
 import sys
 
 def concatenate():
-
+##
+## main function to concatenate the 10-chain samples and forecasts into one
+##
      folder = sys.argv[1]
 
      directory =  'Result' + folder + '/' + 'Posterior/'

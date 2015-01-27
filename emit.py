@@ -1,3 +1,7 @@
+## This module programs all the functions needed to compute
+## the carbon emission presented in Keller et al. 2007 (denoted as keller07): 
+## (http://papers.ssrn.com/sol3/papers.cfm?abstract_id=981135)
+
 import numpy as np
 import macro
 

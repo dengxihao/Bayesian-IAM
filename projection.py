@@ -2,6 +2,9 @@ import sys
 import numpy as np
 
 def projection():
+##
+## select forecasts at 2050, 2100 and 2150
+##
   
   foldname = sys.argv[1] 
   

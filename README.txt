@@ -48,8 +48,8 @@ Steps to run R commands in terminal for plotting by:
 
 2. plot hindcasts and forecasts 
 
-    Rscript Mfore.R        # Population and GWP 
-    Rscript Cfore.R        # Carbon emission
+    Rscript Mfplot.R        # Population and GWP 
+    Rscript Cfplot.R        # Carbon emission
 
 3. plot density estimation of marginal pdf of Pop, GWP and CO2 at 2050, 2100 and 2150
 

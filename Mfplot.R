@@ -25,7 +25,7 @@ tfund <- 1951:3000
 rate1 <- fund[45, 2]/dGDP[52]            # International dollar over 1995 USD ratio
 rate2 <- rate1 * dice[1, 3]/fund[60, 2]  # International dollar over 2005 USD ratio 
 
-pdf('Figures/Mfore.pdf)
+pdf('Figures/Mfore.pdf')
 
 par(mfrow=c(2, 1), pin=c(3.5, 2.7), mar=c(5,4.6,4,1.5))
 

@@ -27,11 +27,11 @@ Steps to run the Python commands in terminal:
 
 3. compute percentiles of posterior hindcasts & forecasts:
 
-    python interval.py Pop(or GDP or CO2)
+    python interval.py Pop(and GDP and CO2)
 
 4. generate samples of projections for Pop, GWP and CO2 at the year 2050, 2100 and 2150:
 
-    python projection.py 1 Posterior(or Prior) Pop(or GDP or CO2) 
+    python projection.py 1 Posterior(and Prior) Pop(and GDP and CO2) 
 
 5. generate bestfit model:
   
@@ -53,15 +53,15 @@ Steps to run R commands in terminal for plotting by:
 
 3. plot density estimation of marginal pdf of Pop, GWP and CO2 at 2050, 2100 and 2150
 
-    Rscript pfplot.R Pop(or GDP or CO2)
+    Rscript pfplot.R Pop(and GDP and CO2)
 
 4. plot the comparison of maginal pdf of Pop, GWP and CO2 at 2050
 
-    Rscript pplot.R Pop(or GDP or CO2)
+    Rscript pplot.R Pop(and GDP and CO2)
 
 5. plot the observations, bestfit model and residuals
 
-    Rscript NormalTest.R Pop(or GDP or CO2)
+    Rscript NormTest.R Pop(and GDP and CO2)
 
 
 ####################################################################################

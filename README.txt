@@ -18,7 +18,7 @@ Steps to run the Python commands in terminal:
 1. run 10 mcmc chains and concatenate all the chains:
   
     python test.py 
-    python concatenate.py 1 (or 2) ## The number 1 or 2 depends on which prior we use
+    python concatenate.py 1 
 
 2. generate prior forecast:
 
@@ -31,7 +31,7 @@ Steps to run the Python commands in terminal:
 
 4. generate samples of projections for Pop, GWP and CO2 at the year 2050, 2100 and 2150:
 
-    python projection.py 1(or 2) Posterior(or Prior) Pop(or GDP or CO2) 
+    python projection.py 1 Posterior(or Prior) Pop(or GDP or CO2) 
 
 5. generate bestfit model:
   
@@ -44,7 +44,7 @@ Steps to run R commands in terminal for plotting by:
 
 1. plot density estimation of marginal pdf of parameters:
 
-    Rscript dplot.R 1(or 2) Posterior j     # j denotes the jth parameter
+    Rscript dplot.R 1 Posterior j     # j denotes the jth parameter
 
 2. plot hindcasts and forecasts 
 
@@ -61,7 +61,7 @@ Steps to run R commands in terminal for plotting by:
 
 5. plot the observations, bestfit model and residuals
 
-    Rscript NormTest.R Pop(or GDP or CO2)
+    Rscript NormalTest.R Pop(or GDP or CO2)
 
 
 ####################################################################################

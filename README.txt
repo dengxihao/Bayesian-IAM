@@ -1,5 +1,14 @@
 This is a README file for the package Bayesian-IAM
 
+* This package is assimilating the observations of population growth, 
+  world gross product and carbon emission into a simple integrated 
+  assessment model through a Bayesian framework. The result is 
+  computing the posterior predictive distributions of future population,
+  GWP and carbon emission.
+
+* the shell script runit.sh will run all the codes in proper order to 
+  produce the results for publication.  
+
 *.py are python modules and *.R are R modules.
 
 --- Requirements:
@@ -7,7 +16,7 @@ This is a README file for the package Bayesian-IAM
  * install joblib for python parallel computing from here: 
              https://pythonhosted.org/joblib/installing.html
 
- * install the following R packages into the directory /R_packages:
+ * install the following R packages:
    (1) grid (2) methods (3) spam (4) maps (5) fields
     
 
@@ -44,7 +53,7 @@ Steps to run R commands in terminal for plotting by:
 
 1. plot density estimation of marginal pdf of parameters:
 
-    Rscript dplot.R 1 Posterior j     # j denotes the jth parameter
+    Rscript dplot.R 1 Posterior j     # j denotes the jth parameter, and there are totally 25 parameters.
 
 2. plot hindcasts and forecasts 
 

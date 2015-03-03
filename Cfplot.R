@@ -1,10 +1,10 @@
 ## plot percentiles of hindcasts and forecasts of carbon emission
 
-library("grid", lib.loc="R_packages/");
-library("methods", lib.loc="R_packages/");
-library("spam", lib.loc="R_packages/");
-library("maps", lib.loc="R_packages/");
-library("fields", lib.loc="R_packages/");
+suppressPackageStartupMessages(library("grid"));
+suppressPackageStartupMessages(library("methods"));
+suppressPackageStartupMessages(library("spam"));
+suppressPackageStartupMessages(library("maps"));
+suppressPackageStartupMessages(library("fields"));
 
 ###############################################################################
 
